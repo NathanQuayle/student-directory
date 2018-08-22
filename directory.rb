@@ -1,21 +1,63 @@
-students = [
-  "Dr. Hannibal Lecter",
-  "Darth Vader",
-  "Nurse Ratched",
-  "Michael Corleone",
-  "Alex DeLarge",
-  "The Wicked Witch of the West",
-  "Terminator",
-  "Freddy Krueger",
-  "The Joker",
-  "Joffrey Baratheon",
-  "Norman Bates"
-]
+# students = [
+#   {name: "Dr. Hannibal Lecter", cohort: :november},
+#   {name: "Darth Vader", cohort: :november},
+#   {name: "Nurse Ratched", cohort: :november},
+#   {name: "Michael Corleone", cohort: :november},
+#   {name: "Alex DeLarge", cohort: :november},
+#   {name: "The Wicked Witch of the West", cohort: :november},
+#   {name: "Terminator", cohort: :november},
+#   {name: "Freddy Krueger", cohort: :november},
+#   {name: "The Joker", cohort: :november},
+#   {name: "Joffrey Baratheon", cohort: :november},
+#   {name: "Norman Bates", cohort: :november}
+# ]
 
-puts "The students of Villains Academy"
-puts "-------------"
-students.each do |student|
-  puts student
+def print_header
+  
+  puts "The students of Villains Academy"
+  puts "-------------"
+  
 end
-# finally, we print the total number of students
-puts "Overall, we have #{students.count} great students"
+
+def print(students)
+  
+  students.each do |student|
+    
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    
+  end
+  
+end
+
+def print_footer(names)
+  
+  puts "Overall, we have #{names.count} great students"
+  
+end
+
+def input_students
+  
+  puts "Please enter the names of the students"
+  puts "To finish, just hit return twice"
+  # create an empty array
+  students = []
+  # get first name
+  name = gets.chomp
+  
+  while !name.empty? do
+    
+    students << {name: name, cohort: :november}
+    puts "Now we have #{students.count} students"
+    
+    name = gets.chomp
+    
+  end
+  
+  students
+  
+end
+
+students = input_students
+print_header
+print(students)
+print_footer(students)
