@@ -130,6 +130,8 @@ def save_students
   puts "Enter a filename  to save to: "
   filename = gets.chomp
   
+  add_csv(filename) if filename[-4, -1] != ".csv"
+  
   # open the file for writing
   CSV.open(filename, "w") do |csv|
   
@@ -142,7 +144,7 @@ def save_students
     
   end
   
-  puts "Saved students.csv!"
+  puts "Saved #{filename}"
   
 end
 
@@ -156,11 +158,14 @@ end
 
 def load_students(filename = "")
   
+  # If file doesn't exist in the file system reprompt for input.
   while !File.file?(filename) do
     puts "Enter a filename to load: "
     filename = gets.chomp
+    add_csv(filename) if filename[-4, -1] != ".csv"
   end
   
+  # Keep track of total amount of students loaded.
   total_loaded = 0
   
   CSV.foreach(filename) do |row|
@@ -172,6 +177,12 @@ def load_students(filename = "")
   end
   
   puts "Loaded #{total_loaded} from #{filename}"
+  
+end
+
+def add_csv(filename)
+  
+  filename << ".csv"
   
 end
 
