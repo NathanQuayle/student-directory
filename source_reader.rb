@@ -1,0 +1,1 @@
+puts File.open("directory.rb").readlines
